@@ -30,7 +30,7 @@ export default function Register() {
                         <div>
                             <img className="mx-auto h-24 w-auto" src={logo} alt="Workflow" />
                             <h2 className="mt-6 text-center text-3xl font-extrabold text-memory-c6">
-                                Welcome to Memories
+                                Sign Up to Memories
                             </h2>
                         </div>
 

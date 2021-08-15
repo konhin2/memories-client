@@ -7729,6 +7729,13 @@
     "snapdragon" "^0.8.1"
     "to-regex" "^3.0.1"
 
+"national-geographic-api@^2.0.6":
+  "integrity" "sha512-RsgMacg6S13+KQqx4vIQReVroqhTZ3uXndy5AxoR50HzsYjZuJKBshATvUeNU6qgAUWJaIyRbPPQY0qmh4AhFA=="
+  "resolved" "https://registry.npmjs.org/national-geographic-api/-/national-geographic-api-2.0.6.tgz"
+  "version" "2.0.6"
+  dependencies:
+    "request" "2.88.2"
+
 "native-url@^0.2.6":
   "integrity" "sha512-k4bDC87WtgrdD362gZz6zoiXQrl40kYlBmpfmSjwRO1VU0V5ccwJTlxuE72F6m3V0vc1xOf6n3UCP9QyerRqmA=="
   "resolved" "https://registry.npmjs.org/native-url/-/native-url-0.2.6.tgz"
@@ -9880,7 +9887,7 @@
     "stealthy-require" "^1.1.1"
     "tough-cookie" "^2.3.3"
 
-"request@^2.34", "request@^2.88.2":
+"request@^2.34", "request@^2.88.2", "request@2.88.2":
   "integrity" "sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw=="
   "resolved" "https://registry.npmjs.org/request/-/request-2.88.2.tgz"
   "version" "2.88.2"

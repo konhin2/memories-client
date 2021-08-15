@@ -9,7 +9,8 @@ const UserState = (props) => {
     const initialState = {
         user: {
             username: "",
-            email: ""
+            email: "",
+            imgOwner:""
         },
         authStatus: null,
         token: null
@@ -44,14 +45,10 @@ const UserState = (props) => {
             delete axiosClient.defaults.headers.common['x-auth-token']
         }
 
-        console.log("AxiosClient:", axiosClient.defaults.headers.common)
-
         // ENVIAMOS LA PETICIÓN
         try {
             
             const res = await axiosClient.get('/api/auth')
-
-            console.log(res) // userFound de retorno
 
             dispatch({
                 type: "GET_USER_INFO",
@@ -74,15 +71,13 @@ const UserState = (props) => {
         try {
             const res = await axiosClient.post('/api/auth/login', form)
 
-            console.log(res)
-
             dispatch({
                 type: "LOGIN_SUCCESS",
                 payload: res.data
             })
 
         } catch(e) {
-
+            console.log(e)
         }
 
     }

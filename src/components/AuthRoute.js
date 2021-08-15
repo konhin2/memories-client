@@ -18,7 +18,6 @@ export default function AuthRoute ( { component: Component, ...props} ){
         authStatus,
         verifyingToken } = userCtx
     
-    console.log("authStatus", authStatus)
 
     useEffect( () => {
 
@@ -33,9 +32,6 @@ export default function AuthRoute ( { component: Component, ...props} ){
         
         // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [ authStatus ])
-
-
-
     return(
     <Route 
         {...props}

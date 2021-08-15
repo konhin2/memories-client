@@ -11,6 +11,7 @@ export default function Login() {
     const {
         loginUser,
     } = userCtx
+    
     const handleChange = (event) =>{
         event.preventDefault()
         setData({
@@ -61,7 +62,7 @@ export default function Login() {
                         </div>
 
                         <div>
-                            <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-memory-c6 bg-memory-c4 hover:bg-memory-c5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-memory-c6 bg-memory-c4 hover:bg-memory-c5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-memory-c2">
                                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
 
                                     <svg className="h-5 w-5 text-memory-c6 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
