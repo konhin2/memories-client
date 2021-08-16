@@ -22,7 +22,8 @@ module.exports = {
         c4: "#F5C4BD",
         c5: "#F7B3B2",
         c6: "#444a4a",
-        c7: "#D0F2F2" 
+        c7: "#D0F2F2",
+        c8: "#F28972", 
       }
     },
     extend: {},

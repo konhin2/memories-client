@@ -58,16 +58,15 @@ const PostState = (props) => {
     }
 
     const updatePost = async (dataForm) => {
-
         const form = {
             postId: dataForm._id,
             title: dataForm.title,
             content: dataForm.content,
-            imageURL: dataForm.imgURL,
+            imageURL: dataForm.imageURL,
             username: dataForm.username,
             imgOwner: dataForm.imgOwner,
         }
-
+        console.log('update', form)
         await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts/update`, form)
 
         getPosts()

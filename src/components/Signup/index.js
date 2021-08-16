@@ -76,7 +76,7 @@ export default function Register() {
                                     </div>                                    
 
                                     <div>
-                                        <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-memory-c6 bg-memory-c4 hover:bg-memory-c5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-memory-c6 bg-memory-c4 hover:bg-memory-c5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-memory-c2">
                                             Sign up
                                         </button>
                                     </div>
