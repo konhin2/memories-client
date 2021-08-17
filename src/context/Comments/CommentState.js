@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import CommentContext from './CommentContext'
 import CommentReducer from './CommentReducer'
 
-import axios from 'axios'
+import axiosClient from './../../config/axios'
 
 const CommentState = (props) => {
 
@@ -31,7 +31,7 @@ const CommentState = (props) => {
     const createComment = async (dataForm) => {
         try {
             
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/comments/create`, dataForm)
+            await axiosClient.post(`/api/comments/create`, dataForm)
 
             getComments()
 
@@ -47,7 +47,7 @@ const CommentState = (props) => {
 
         try {
 
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/comments`)
+            const res = await axiosClient.get(`/api/comments`)
             dispatch({
                 type: "GET_COMMENTS",
                 payload: res.data
@@ -67,7 +67,7 @@ const CommentState = (props) => {
             postId: dataForm.postId
         }
 
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/comments/update`, form)
+        await axiosClient.post(`/api/comments/update`, form)
 
         getComments()
         
@@ -80,7 +80,7 @@ const CommentState = (props) => {
             commentId: dataForm._id
         }
 
-        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/comments/delete`, form)
+        const res = await axiosClient.post(`/api/comments/delete`, form)
 
         console.log(res)
         

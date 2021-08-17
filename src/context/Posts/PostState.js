@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import PostContext from './PostContext'
 import PostReducer from './PostReducer'
 
-import axios from 'axios'
+import axiosClient from './../../config/axios'
 
 const PostState = (props) => {
 
@@ -27,7 +27,7 @@ const PostState = (props) => {
     const createPost = async (dataForm) => {
         try {
             
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts/create`, dataForm)
+            await axiosClient.post(`/api/posts/create`, dataForm)
 
             getPosts()
 
@@ -43,7 +43,7 @@ const PostState = (props) => {
 
         try {
 
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/posts`)
+            const res = await axiosClient.get(`/api/posts`)
 
             const updatedPosts = res.data
 
@@ -67,7 +67,7 @@ const PostState = (props) => {
             imgOwner: dataForm.imgOwner,
         }
         console.log('update', form)
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts/update`, form)
+        await axiosClient.post(`/api/posts/update`, form)
 
         getPosts()
         
@@ -80,7 +80,7 @@ const PostState = (props) => {
             postId: dataForm._id
         }
 
-        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/posts/delete`, form)
+        const res = await axiosClient.post(`/api/posts/delete`, form)
 
         console.log(res)
         
