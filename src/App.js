@@ -20,13 +20,14 @@ import AuthRoute from './components/AuthRoute'
 // Global state
 import UserState from './context/Users/UserState'
 import PostState from './context/Posts/PostState'
+import NasaState from './context/NASA/NasaState'
 
 function App() {
   return (
     <>
       <UserState>
       <PostState>
-
+      <NasaState>
       <Router>
         <Nav />
         <Switch>
@@ -41,6 +42,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Router>
+      </NasaState>
       </PostState>
       </UserState>
     </>
