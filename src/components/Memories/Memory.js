@@ -6,7 +6,11 @@ import { useParams, Link } from 'react-router-dom'
 
 import axios from 'axios'
 
+import Comments from './Comments'
+
 export default function Memory() {
+    // Comments
+    const [activeComments, setActiveComments] = useState(false)
     // Constantes para validación
     const ctxUser = useContext(UserContext)
     const { user } = ctxUser
@@ -117,6 +121,11 @@ export default function Memory() {
     }
     const deletePostBtn = (event) => {
         deletePost(newMemories)
+    }
+    // COMMENTS
+    const toggleComments = (event) => {
+        event.preventDefault()
+        setActiveComments(!activeComments)
     }
     if (editMode && validation) {
         return (
@@ -282,54 +291,59 @@ export default function Memory() {
                                 <div className="relative pt-5 pb-8 px-4 sm:pt-5 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2">
                                     <div className="lg:col-start-2">
                                         <div className="sm:pl-8 text-base max-w-prose mx-auto lg:max-w-lg lg:ml-auto lg:mr-0">
-                                            <Link to='/memories' className="leading-6 text-memory-c5 font-semibold tracking-wide uppercase hover:text-memory-c4">Go Back</Link>
-                                            <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-memory-c6 sm:text-4xl">{data.title}</h3>
-                                            <p className="mt-8 leading-6 text-sm text-gray-500 text-justify">{data.content}</p>
-                                            <div className='mt-6 flex justify-between items-center'>
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0">
-                                                        <p>
-                                                            <img className="h-10 w-10 rounded-full" src={data.imgOwner} alt="" />
-                                                        </p>
-                                                    </div>
-                                                    <div className="ml-3">
-                                                        <p className="text-sm font-medium text-memory-c6">
-                                                            <span>
-                                                                {data.username}
-                                                            </span>
-                                                        </p>
-                                                        <div className="flex space-x-1 text-sm text-gray-500">
-                                                            <time datetime="2020-03-16">
-                                                                {data.createdAt.substr(0, 10)}
-                                                            </time>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {
-                                                    validation ?
-                                                        (
-                                                            <div>
-                                                                <button className=" inline-flex items-center justify-center w-10 h-10 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => changeEditMode(e)}>
-                                                                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
-                                                                </button>
-                                                                <Link to='/memories' onClick={(e) => deletePostBtn(e)} type="button" className="mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8">
-                                                                    <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                        <path fill-rule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clip-rule="evenodd" />
-                                                                    </svg>
-                                                                </Link>
+                                            {
+                                                !activeComments ?
+                                                    (<>
+                                                        <Link to='/memories' className="leading-6 text-memory-c5 font-semibold tracking-wide uppercase hover:text-memory-c4">Go Back</Link>
+                                                        <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-memory-c6 sm:text-4xl">{data.title}</h3>
+                                                        <p className="mt-8 leading-6 text-sm text-gray-500 text-justify">{data.content}</p>
+                                                        <div className='mt-6 flex justify-between items-center'>
+                                                            <div className="flex items-center">
+                                                                <div className="flex-shrink-0">
+                                                                    <p>
+                                                                        <img className="h-10 w-10 rounded-full" src={data.imgOwner} alt="" />
+                                                                    </p>
+                                                                </div>
+                                                                <div className="ml-3">
+                                                                    <p className="text-sm font-medium text-memory-c6">
+                                                                        <span>
+                                                                            {data.username}
+                                                                        </span>
+                                                                    </p>
+                                                                    <div className="flex space-x-1 text-sm text-gray-500">
+                                                                        <time datetime="2020-03-16">
+                                                                            {data.createdAt.substr(0, 10)}
+                                                                        </time>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        ) : null
-                                                }
-                                            </div>
+                                                            {
+                                                                validation ?
+                                                                    (
+                                                                        <div>
+                                                                            <button className=" inline-flex items-center justify-center w-10 h-10 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => changeEditMode(e)}>
+                                                                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+                                                                            </button>
+                                                                            <Link to='/memories' onClick={(e) => deletePostBtn(e)} type="button" className="mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8">
+                                                                                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                                    <path fill-rule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clip-rule="evenodd" />
+                                                                                </svg>
+                                                                            </Link>
+                                                                        </div>
+                                                                    ) : null
+                                                            }
+                                                        </div>
+                                                    </>)
+                                                    :
+                                                    null
+                                            }
+
                                             <div className='mt-7'>
-                                                <div className="flex items-center border border-memory-c2 w-auto h-8">
-                                                    <button className=" inline-flex items-center justify-center w-7 h-7 mr-1 text-memory-c6 transition-colors duration-150 hover:text-white hover:bg-memory-c2 rounded-full">
-                                                        <svg className="w-8 h-8 fill-current" viewBox="0 0 20 20">
-                                                        <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
-                                                        </svg>
-                                                    </button>
-                                                    <p className='text-memory-c6'>Comments</p>
-                                                </div>
+                                                <Comments
+                                                    onClick={(e) => toggleComments(e)}
+                                                    value={activeComments}
+                                                    postId = {id}
+                                                />
                                             </div>
                                         </div>
                                     </div>

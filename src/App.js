@@ -21,6 +21,7 @@ import AuthRoute from './components/AuthRoute'
 import UserState from './context/Users/UserState'
 import PostState from './context/Posts/PostState'
 import NasaState from './context/NASA/NasaState'
+import CommentState from './context/Comments/CommentState'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <UserState>
       <PostState>
       <NasaState>
+      <CommentState>
       <Router>
         <Nav />
         <Switch>
@@ -42,6 +44,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Router>
+      </CommentState>
       </NasaState>
       </PostState>
       </UserState>
