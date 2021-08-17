@@ -1,13 +1,18 @@
 import React, { useContext } from 'react'
 import ReactPlayer from 'react-player'
 import NasaContext from '../../context/NASA/NasaContext'
+import UserContext from './../../context/Users/UserContext'
 import {Link} from 'react-router-dom'
 
 export default function Home() {
-    const context = useContext(NasaContext)
+    const nasaCtx = useContext(NasaContext)
     const {
         image,
-    } = context
+    } = nasaCtx
+    const userCtx = useContext(UserContext)
+    const {
+        authStatus
+    } = userCtx
     return (
         <div className="overflow-hidden bg-no-repeat bg-cover ajusteHome " style={{ backgroundImage: `url(${image})` }}>
             <div className="relative sm:pb-24">
@@ -25,9 +30,19 @@ export default function Home() {
                                         If you have any memories to share please click the button below, you will be surprised how good it feels.
                                     </p>
                                     <div className='flex justify-center'>
-                                        <Link to="/memories" class="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    {
+                                        authStatus ?
+                                        (
+                                            <Link to="/memories" class="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Get Started
                                         </Link>
+                                        ):
+                                        (
+                                            <Link to="/login" class="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Get Started
+                                        </Link>
+                                        )
+                                    }
                                     </div>
                                     <p className="mt-8 text-sm text-white uppercase tracking-wide font-semibold sm:mt-10">Created with:</p>
                                     <div className="mt-5 w-full sm:mx-auto sm:max-w-lg lg:ml-0">

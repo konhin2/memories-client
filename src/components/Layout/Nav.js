@@ -38,6 +38,9 @@ export default function Nav() {
         switch (e.target.name) {
             case 'home':
                 return setCurrentPage('home')
+            case 'tree':
+                console.log('home')
+                return setCurrentPage('home')
             case 'login':
                 return setCurrentPage('login')
             case 'signup':
@@ -76,8 +79,8 @@ export default function Nav() {
                         <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                             <div className="flex-shrink-0 flex items-center">
                                 <Link to="/">
-                                    <img className="block lg:hidden h-8 w-10 h-auto" src={logo} alt="Workflow" />
-                                    <img className="hidden lg:block h-8 w-10 h-auto" src={logo} alt="Workflow" />
+                                    <img className="block lg:hidden h-8 w-10 h-auto" src={logo} alt="Workflow" name='tree' to="/" onClick={(e) => home(e)}/>
+                                    <img className="hidden lg:block h-8 w-10 h-auto" src={logo} alt="Workflow" name='tree' to="/" onClick={(e) => home(e)}/>
                                 </Link>
                             </div>
                             <div className="hidden flex-1 flex items-center sm:ml-6 sm:flex justify-end row-end-1 sm:space-x-8">
