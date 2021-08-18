@@ -19,7 +19,10 @@ export default function Comments(props) {
     // Comentarios exclusivos del post
     const [commentsState, setCommentsState] = useState([])
     const [editMode, setEditMode] = useState(false)
-    const [dots, setDots] = useState(true)
+    const [dots, setDots] = useState({
+        _id:''
+    })
+    const [chars, setChars] = useState(100)
     // CRUD
     const [newComment, setNewComment] = useState({
         comment: '',
@@ -39,10 +42,16 @@ export default function Comments(props) {
     // FUNCIONES
     const handleChange = (event) => {
         event.preventDefault()
+        if (event.target.value.length > newComment.comment.length) {
+            setChars(chars-1)
+        } else if(event.target.value.length < newComment.comment.length) {
+            setChars(chars+1)
+        }
         setNewComment({
             ...newComment,
             [event.target.name]: event.target.value
         })
+        
     }
     const sendCreate = (e) => {
         e.preventDefault()
@@ -77,9 +86,17 @@ export default function Comments(props) {
         deleteComment(element)
     }
     // Mostrar opciones
-    const show = (e) => {
+    const show = (e, element) => {
         e.preventDefault()
-        setDots(false)
+        setDots({
+            _id: element._id
+        })
+    }
+    const hide = (event) => {
+        event.preventDefault()
+        setDots({
+            _id: ''
+        })
     }
     return (
         <>
@@ -111,17 +128,25 @@ export default function Comments(props) {
                                     :
                                     (e) => sendCreate(e)
                                 }>
-                                    <div className="flex flex-wrap -mx-3 mb-6">
-                                        <h2 className="px-4 pt-3 pb-2 text-memory-c6 text-lg">Share your feels!</h2>
+                                    <div className="flex flex-wrap justify-center -mx-3 mb-6">
                                         <div className="w-full md:w-full px-3 mb-2 mt-2">
-                                            <textarea className="text-memory-c6 bg-gray-100 rounded border border-memory-c4 resize-none w-full h-20 py-2 px-3 placeholder-gray-400 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' value={newComment.comment} required onChange={e => handleChange(e)}></textarea>
+                                            {
+                                                100 - chars > 0 ?
+                                                (
+                                                    <textarea minLength='1' maxLength='100' className="text-memory-c6 bg-gray-100 rounded border border-memory-c2 resize-none w-full h-20 py-2 px-3 placeholder-gray-400 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' value={newComment.comment} required onChange={e => handleChange(e)}></textarea>
+                                                ):
+                                                (
+                                                    <textarea minLength='1' maxLength='100' className="text-memory-c6 bg-gray-100 rounded border border-memory-c4 resize-none w-full h-20 py-2 px-3 placeholder-gray-400 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' value={newComment.comment} required onChange={e => handleChange(e)}></textarea>
+                                                )
+                                            }
+                                            
                                         </div>
-                                        <div className="flex items-start md:w-full px-3">
-                                            <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
+                                        <div className="w-full flex items-center md:w-full px-3">
+                                            <div className="flex justify-left items-center w-1/2 text-gray-700 px-2 mr-auto">
                                                 <svg fill="none" className="w-5 h-5 text-gray-600 mr-1" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                <p className="text-xs md:text-sm pt-px">Some HTML is okay.</p>
+                                                <p className="text-xs md:text-sm pt-px">Chars left: {chars}</p>
                                             </div>
                                             <div className="-mr-1">
                                                 <input type='submit' className="cursor-pointer bg-memory-c2 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1 hover:bg-memory-c7 hover:text-memory-c1" value='POST' />
@@ -143,31 +168,29 @@ export default function Comments(props) {
                                                         <div className="flex-shrink-0 mr-3">
                                                             <img className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src={comment.img} alt={comment.username} />
                                                         </div>
-                                                        <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                                                            <div className='flex justify-between block'>
+                                                        <div className="flex-1 border rounded-lg px-4 pt-2 pb-2 sm:px-6 sm:pb-4 leading-relaxed">
+                                                            <div className='flex items-center justify-between block mb-2'>
                                                                 <div>
                                                                     <strong>{comment.username}</strong> <span className="text-xs text-gray-400">{comment.createdAt.substr(0, 10)}</span>
                                                                 </div>
                                                                 {
                                                                     user.username === comment.username ?
-                                                                        dots ?
+                                                                        !(dots._id === comment._id) ?
                                                                             (
-                                                                                <button onClick={e=>show(e)} className='text-memory-c6 hover:text-memory-c1'>...</button>
+                                                                                <button onClick={e => show(e, comment)} className='mt-2 text-memory-c6 hover:text-memory-c1'>...</button>
                                                                             ) :
                                                                             (
-                                                                                <div>
-                                                                                <button className=" inline-flex items-center justify-center w-10 h-10 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => activeEdit(e, comment)}>
-                                                                                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
-                                                                                </button>
-                                                                                <button type="button" className="mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8" onClick={(e) => activeDelete(e, comment)}>
-                                                                                    <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                                        <path fill-rule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clip-rule="evenodd" />
-                                                                                    </svg>
-                                                                                </button>
-                                                                            </div>
+                                                                                <div className='' onMouseLeave={e => hide(e)}>
+                                                                                    <button className=" inline-flex items-center justify-center w-8 h-8 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => activeEdit(e, comment)}>
+                                                                                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+                                                                                    </button>
+                                                                                    <button type="button" className="w-8 h-8 mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8" onClick={(e) => activeDelete(e, comment)}>
+                                                                                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                                            <path fill-rule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clip-rule="evenodd" />
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
                                                                             )
-
-
                                                                         : null
                                                                 }
                                                             </div>

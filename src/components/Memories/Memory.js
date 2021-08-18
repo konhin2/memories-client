@@ -38,8 +38,10 @@ export default function Memory() {
             const getPost = await posts.filter(post => post._id === id)[0]
             setData(getPost)
             setNewMemories(getPost)
-            if (getPost.username === user.username) {
-                setValidation(true)
+            if (getPost.username && user.username) {
+                if (getPost.username === user.username) {
+                    setValidation(true)
+                }
             }
             const checkWords = () => {
                 if (getPost.content === '') {
