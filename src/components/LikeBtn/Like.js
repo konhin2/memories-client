@@ -54,7 +54,7 @@ export default function Like(props) {
         <>
             <div className="mt-3 inline-flex items-center h-10 transition-colors duration-150">
                 {
-                    state === true || liked === true ?
+                    liked === true ?
                         (
                             <button
                                 onClick={(e) => { unlikeF(e) }}
