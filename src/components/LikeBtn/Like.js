@@ -30,7 +30,7 @@ export default function Like(props) {
         }
         Load()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state])
+    }, [state,liked])
     // FUNCIONES 
     const likeF = async (e) => {
         e.preventDefault()
@@ -54,7 +54,7 @@ export default function Like(props) {
         <>
             <div className="mt-3 inline-flex items-center h-10 transition-colors duration-150">
                 {
-                    liked === true ?
+                    liked || state?
                         (
                             <button
                                 onClick={(e) => { unlikeF(e) }}
