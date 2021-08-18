@@ -101,7 +101,7 @@ export default function Comments(props) {
     return (
         <>
             <div className="flex items-center w-auto h-8">
-                <button className=" inline-flex items-center justify-center w-7 h-7 mr-1 text-memory-c6 transition-colors duration-150 hover:text-white hover:bg-memory-c2 rounded-full" >
+                <button className="duration-300 inline-flex items-center justify-center w-7 h-7 mr-1 text-memory-c6 transition-colors duration-150 hover:text-white hover:bg-memory-c2 rounded-full" >
                     <svg className="w-8 h-8 fill-current" viewBox="0 0 20 20" onClick={e => props.onClick(e)}>
                         {
                             props.value ?
@@ -149,7 +149,7 @@ export default function Comments(props) {
                                                 <p className="text-xs md:text-sm pt-px">Chars left: {chars}</p>
                                             </div>
                                             <div className="-mr-1">
-                                                <input type='submit' className="cursor-pointer bg-memory-c2 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1 hover:bg-memory-c7 hover:text-memory-c1" value='POST' />
+                                                <input type='submit' className="duration-200 cursor-pointer bg-memory-c2 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1 hover:bg-memory-c7 hover:text-memory-c1" value='POST' />
                                             </div>
                                         </div>
                                     </div>
@@ -177,14 +177,14 @@ export default function Comments(props) {
                                                                     user.username === comment.username ?
                                                                         !(dots._id === comment._id) ?
                                                                             (
-                                                                                <button onClick={e => show(e, comment)} className='mt-2 text-memory-c6 hover:text-memory-c1'>...</button>
+                                                                                <button onClick={e => show(e, comment)} className='duration-200 mt-2 text-memory-c6 hover:text-memory-c1'>...</button>
                                                                             ) :
                                                                             (
                                                                                 <div className='' onMouseLeave={e => hide(e)}>
-                                                                                    <button className=" inline-flex items-center justify-center w-8 h-8 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => activeEdit(e, comment)}>
+                                                                                    <button className="duration-200 inline-flex items-center justify-center w-8 h-8 mr-4 text-white transition-colors duration-150 bg-memory-c2 rounded-full hover:bg-memory-c1" onClick={(e) => activeEdit(e, comment)}>
                                                                                         <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
                                                                                     </button>
-                                                                                    <button type="button" className="w-8 h-8 mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8" onClick={(e) => activeDelete(e, comment)}>
+                                                                                    <button type="button" className="duration-200 w-8 h-8 mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8" onClick={(e) => activeDelete(e, comment)}>
                                                                                         <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                                                             <path fillRule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clipRule="evenodd" />
                                                                                         </svg>

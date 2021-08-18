@@ -261,7 +261,7 @@ export default function Memories() {
                         <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
                             “Your illness does not define you. Your strength and courage does.”
                         </p>
-                        <button type="button" className="mt-5 inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c4" onClick={(e) => createMode(e)}>
+                        <button type="button" className="duration-200 mt-5 inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c4" onClick={(e) => createMode(e)}>
                             <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                             </svg>
