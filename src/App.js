@@ -22,6 +22,7 @@ import UserState from './context/Users/UserState'
 import PostState from './context/Posts/PostState'
 import NasaState from './context/NASA/NasaState'
 import CommentState from './context/Comments/CommentState'
+import Likes from './context/Likes/LikeState'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <PostState>
       <NasaState>
       <CommentState>
+      <Likes>
       <Router>
         <Nav />
         <Switch>
@@ -44,6 +46,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Router>
+      </Likes>
       </CommentState>
       </NasaState>
       </PostState>

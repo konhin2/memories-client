@@ -7,6 +7,7 @@ import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Comments from './Comments'
+import Like from './../LikeBtn/Like'
 
 export default function Memory() {
     // Comments
@@ -148,7 +149,7 @@ export default function Memory() {
                                             <form className="space-y-6" onSubmit={(e) => sendData(e)}>
                                                 <div className="grid grid-cols-3 gap-6">
                                                     <div className="col-span-3 sm:col-span-2">
-                                                        <label for="title" className="block text-sm font-medium text-gray-700">
+                                                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                                                             Title
                                                         </label>
                                                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -168,7 +169,7 @@ export default function Memory() {
                                                 </div>
 
                                                 <div>
-                                                    <label for="content" className="block text-sm font-medium text-gray-700">
+                                                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">
                                                         Content
                                                     </label>
                                                     <div className="mt-1">
@@ -198,10 +199,10 @@ export default function Memory() {
                                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                                     <div className="space-y-1 text-center">
                                                                         <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                                         </svg>
                                                                         <div className="flex text-sm text-gray-600">
-                                                                            <label for="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
+                                                                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
                                                                                 <span>Upload a file</span>
                                                                                 <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={e => uploadImage(e)} />
                                                                             </label>
@@ -217,10 +218,10 @@ export default function Memory() {
                                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-memory-c2 border-dashed rounded-md">
                                                                     <div className="space-y-1 text-center">
                                                                         <svg className="mx-auto h-12 w-12 text-memory-c2" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                                         </svg>
                                                                         <div className="flex text-sm text-gray-600">
-                                                                            <label for="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
+                                                                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
                                                                                 <span>Upload a file</span>
                                                                                 <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={e => uploadImage(e)} />
                                                                             </label>
@@ -298,7 +299,8 @@ export default function Memory() {
                                                     (<>
                                                         <Link to='/memories' className="leading-6 text-memory-c5 font-semibold tracking-wide uppercase hover:text-memory-c4">Go Back</Link>
                                                         <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-memory-c6 sm:text-4xl">{data.title}</h3>
-                                                        <p className="mt-8 leading-6 text-sm text-gray-500 text-justify">{data.content}</p>
+                                                        <Like postId={id} username={user.username}/>
+                                                        <p className="mt-6 leading-6 text-sm text-gray-500 text-justify">{data.content}</p>
                                                         <div className='mt-6 flex justify-between items-center'>
                                                             <div className="flex items-center">
                                                                 <div className="flex-shrink-0">
@@ -313,7 +315,7 @@ export default function Memory() {
                                                                         </span>
                                                                     </p>
                                                                     <div className="flex space-x-1 text-sm text-gray-500">
-                                                                        <time datetime="2020-03-16">
+                                                                        <time dateTime="2020-03-16">
                                                                             {data.createdAt.substr(0, 10)}
                                                                         </time>
                                                                     </div>
@@ -328,7 +330,7 @@ export default function Memory() {
                                                                             </button>
                                                                             <Link to='/memories' onClick={(e) => deletePostBtn(e)} type="button" className="mr-4 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c8">
                                                                                 <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                                    <path fill-rule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clip-rule="evenodd" />
+                                                                                    <path fillRule="evenodd" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306" clipRule="evenodd" />
                                                                                 </svg>
                                                                             </Link>
                                                                         </div>
@@ -344,7 +346,7 @@ export default function Memory() {
                                                 <Comments
                                                     onClick={(e) => toggleComments(e)}
                                                     value={activeComments}
-                                                    postId = {id}
+                                                    postId={id}
                                                 />
                                             </div>
                                         </div>

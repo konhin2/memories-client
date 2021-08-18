@@ -33,12 +33,12 @@ export default function Home() {
                                     {
                                         authStatus ?
                                         (
-                                            <Link to="/memories" class="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <Link to="/memories" className="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Get Started
                                         </Link>
                                         ):
                                         (
-                                            <Link to="/login" class="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <Link to="/login" className="mt-10 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-memory-c6 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Get Started
                                         </Link>
                                         )

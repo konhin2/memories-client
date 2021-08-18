@@ -7,6 +7,8 @@ import UserContext from './../../context/Users/UserContext'
 
 import axios from 'axios'
 
+import Like from './../LikeBtn/Like'
+
 export default function Memories() {
     const [loading, setLoading] = useState(false)
     const [activeCreate, setActiveCreate] = useState(false)
@@ -89,7 +91,7 @@ export default function Memories() {
             const WordCounter = (str) => {
                 return str.trim().split(/\s+/).length;
             }
-            setWords(200-WordCounter(event.target.value))
+            setWords(200 - WordCounter(event.target.value))
         }
     }
     const uploadImage = async (event) => {
@@ -126,40 +128,40 @@ export default function Memories() {
                             <form className="space-y-6" onSubmit={e => sendData(e)}>
                                 <div className="grid grid-cols-3 gap-6">
                                     <div className="col-span-3 sm:col-span-2">
-                                        <label for="title" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                                             Title
                                         </label>
                                         <div className="mt-1 flex rounded-md shadow-sm">
                                             {
                                                 newMemories.title.length < 4 || newMemories.title.length > 30 ?
-                                                (
-                                                    <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c4 focus:border-memory-c4 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30'/>
-                                                )
-                                                :
-                                                (
-                                                    <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c2 focus:border-memory-c2 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-memory-c2" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30'/>
-                                                )
+                                                    (
+                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c4 focus:border-memory-c4 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30' />
+                                                    )
+                                                    :
+                                                    (
+                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c2 focus:border-memory-c2 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-memory-c2" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30' />
+                                                    )
                                             }
-                                            
+
                                         </div>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="content" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">
                                         Content
                                     </label>
                                     <div className="mt-1">
                                         {
                                             200 - words < 4 || words < 0 ?
-                                            (
-                                                <textarea onChange={e => handleChange(e)} id="content" name="content" rows="3" className="p-1 shadow-sm focus:ring-memory-c4 focus:border-memory-c4 block w-full sm:text-sm border border-gray-300 rounded-md focus:outline-none " placeholder="Share your feels or story..." value={newMemories.content}></textarea>
-                                            ):
-                                            (
-                                                <textarea onChange={e => handleChange(e)} id="content" name="content" rows="3" className="p-1 shadow-sm focus:ring-memory-c2 focus:border-memory-c2 block w-full sm:text-sm border border-memory-c2 rounded-md focus:outline-none " placeholder="Share your feels or story..." value={newMemories.content}></textarea>
-                                            )
+                                                (
+                                                    <textarea onChange={e => handleChange(e)} id="content" name="content" rows="3" className="p-1 shadow-sm focus:ring-memory-c4 focus:border-memory-c4 block w-full sm:text-sm border border-gray-300 rounded-md focus:outline-none " placeholder="Share your feels or story..." value={newMemories.content}></textarea>
+                                                ) :
+                                                (
+                                                    <textarea onChange={e => handleChange(e)} id="content" name="content" rows="3" className="p-1 shadow-sm focus:ring-memory-c2 focus:border-memory-c2 block w-full sm:text-sm border border-memory-c2 rounded-md focus:outline-none " placeholder="Share your feels or story..." value={newMemories.content}></textarea>
+                                                )
                                         }
-                                        
+
                                     </div>
                                     <p className="mt-2 text-sm text-gray-500">
                                         Words Left: {words < 0 ? 0 : words}
@@ -176,10 +178,10 @@ export default function Memories() {
                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                     <div className="space-y-1 text-center">
                                                         <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                         </svg>
                                                         <div className="flex text-sm text-gray-600">
-                                                            <label for="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
+                                                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
                                                                 <span>Upload a file</span>
                                                                 <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={e => uploadImage(e)} />
                                                             </label>
@@ -195,10 +197,10 @@ export default function Memories() {
                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-memory-c2 border-dashed rounded-md">
                                                     <div className="space-y-1 text-center">
                                                         <svg className="mx-auto h-12 w-12 text-memory-c2" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                         </svg>
                                                         <div className="flex text-sm text-gray-600">
-                                                            <label for="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
+                                                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-memory-c5 hover:text-memory-c4">
                                                                 <span>Upload a file</span>
                                                                 <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={e => uploadImage(e)} />
                                                             </label>
@@ -261,7 +263,7 @@ export default function Memories() {
                         </p>
                         <button type="button" className="mt-5 inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-memory-c5 hover:bg-memory-c4" onClick={(e) => createMode(e)}>
                             <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
                     </div>
@@ -290,23 +292,28 @@ export default function Memories() {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div className="mt-6 flex items-center">
-                                                    <div className="flex-shrink-0">
-                                                        <p>
-                                                            <img className="h-10 w-10 rounded-full" src={post.imgOwner} alt="" />
-                                                        </p>
-                                                    </div>
-                                                    <div className="ml-3">
-                                                        <p className="text-sm font-medium text-memory-c6">
-                                                            <span>
-                                                                {post.username}
-                                                            </span>
-                                                        </p>
-                                                        <div className="flex space-x-1 text-sm text-gray-500">
-                                                            <time datetime="2020-03-16">
-                                                                {post.createdAt.substr(0, 10)}
-                                                            </time>
+                                                <div className='flex justify-between items-center'>
+                                                    <div className="mt-6 flex items-center">
+                                                        <div className="flex-shrink-0">
+                                                            <p>
+                                                                <img className="h-10 w-10 rounded-full" src={post.imgOwner} alt="" />
+                                                            </p>
                                                         </div>
+                                                        <div className="ml-3">
+                                                            <p className="text-sm font-medium text-memory-c6">
+                                                                <span>
+                                                                    {post.username}
+                                                                </span>
+                                                            </p>
+                                                            <div className="flex space-x-1 text-sm text-gray-500">
+                                                                <time dateTime="2020-03-16">
+                                                                    {post.createdAt.substr(0, 10)}
+                                                                </time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mr-5 pt-2">
+                                                        <Like postId={post._id} username={user.username} />
                                                     </div>
                                                 </div>
                                             </div>
