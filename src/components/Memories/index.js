@@ -29,11 +29,9 @@ export default function Memories() {
         username: user.username,
         imgOwner: user.imgOwner,
     })
-    const [reversedMemories, setReversedMemories] = useState([])
     // USE EFFECT
     useEffect(() => {
         getPosts()
-        setReversedMemories(posts.reverse())
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Functions
@@ -271,8 +269,8 @@ export default function Memories() {
                     </div>
                     <div className="mt-6 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
                         {
-                            reversedMemories.length > 0 ?
-                                reversedMemories.map((post, i) => {
+                            posts.length > 0 ?
+                                posts.map((post, i) => {
                                     return (
                                         <div className="mb-4 flex flex-col rounded-lg shadow-lg overflow-hidden" key={i}>
                                             <div className="flex-shrink-0">

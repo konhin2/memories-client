@@ -7,3 +7,9 @@ body {
         height: calc(100vh - 64px);
     }
 }
+.puntero {
+    width: 28px;
+    position: relative;
+    top: -42.92px;
+    left: -14px;
+}
