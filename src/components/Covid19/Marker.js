@@ -22,7 +22,7 @@ export default function Marker(props) {
                 ) : null
             }
             <button className='absolute text-memory-c2' onClick={(e)=>display(e)} onMouseLeave={()=>hideAuto()}>
-                <img className='puntero' src={MarkerIMG} title={props.country} alt={props.country}/>
+                <img className='puntero' src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/1200px-Map_marker.svg.png' title={props.country} alt={props.country}/>
             </button>
         </>
     )
