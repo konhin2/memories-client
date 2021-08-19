@@ -29,11 +29,26 @@ export default function Memories() {
         username: user.username,
         imgOwner: user.imgOwner,
     })
+    const [activesort, setActivesort] = useState('')
+    const [state, setState] = useState([])
+    const [searchTerm, setSearchTerm] = useState("")
     // USE EFFECT
     useEffect(() => {
-        getPosts()
+        if (activesort === 'user') {
+            setState(posts.sort((a, b) => a.username.localeCompare(b.username)))
+        } else if (activesort === 'name') {
+            setState(posts.sort((a, b) => a.title.localeCompare(b.title)))
+        } else if (activesort === 'date') {
+            setState(posts.reverse())
+        } else {
+            const getPostsAPI = async () => {
+                await getPosts()
+                setState(posts)
+            }
+            getPostsAPI()
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [posts])
     // Functions
     const createMode = (event) => {
         event.preventDefault()
@@ -77,6 +92,7 @@ export default function Memories() {
         setError(null)
         setWords(200)
         setActiveCreate(false)
+        setActivesort('')
     }
     const handleChange = (event) => {
         event.preventDefault()
@@ -113,6 +129,23 @@ export default function Memories() {
         catch (err) { console.log(err) }
 
     }
+    // Sorted
+    const sortedByName = async (event) => {
+        event.preventDefault()
+        setActivesort('name')
+        getPosts()
+    }
+    const sortedByDate = async (event) => {
+        event.preventDefault()
+        setActivesort('date')
+        getPosts()
+    }
+    const sortedByUser = async (event) => {
+        event.preventDefault()
+        setActivesort('user')
+        getPosts()
+    }
+    
     if (activeCreate) {
         return (
             <div className="space-y-6 p-5" >
@@ -252,7 +285,23 @@ export default function Memories() {
         )
     } else {
         return (
-            <div className="relative bg-gray-100 pt-5 px-4 sm:px-6 lg:pt-12 lg:px-8">
+            <div className="relative bg-gray-100 pt-3 px-4 sm:px-6 lg:pt-5 lg:px-8">
+                <div className='flex justify-center sm:justify-between flex-wrap mb-4'>
+                    <span className="relative px-3 z-0 inline-flex shadow-sm rounded-md mb-2">
+                        <button type="button" className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-memory-c6 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-memory-c2 focus:border-memory-c2" onClick={e => sortedByDate(e)}>
+                            Date
+                        </button>
+                        <button type="button" className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-memory-c6 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-memory-c2 focus:border-memory-c2" onClick={e => sortedByUser(e)}>
+                            Username
+                        </button>
+                        <button type="button" className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-memory-c2 focus:border-memory-c2" onClick={e => sortedByName(e)}>
+                            Title
+                        </button>
+                    </span>
+                    <div className="px-3 relative flex items-center justify-self-center mb-2">
+                        <input type="text" id="search" className="search focus:outline-none focus:ring-2  px-4 py-2 shadow-sm focus:ring-memory-c2 focus:border-memory-c2 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder='Search Memory' onChange={event => { setSearchTerm(event.target.value) }} />
+                    </div>
+                </div>
                 <div className="relative max-w-7xl mx-auto" >
                     <div className="text-center">
                         <h2 className="text-3xl tracking-tight font-extrabold text-memory-c6 sm:text-4xl">
@@ -269,8 +318,15 @@ export default function Memories() {
                     </div>
                     <div className="mt-6 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
                         {
-                            posts.length > 0 ?
-                                posts.map((post, i) => {
+                            state.length > 0 ?
+                            // eslint-disable-next-line
+                                state.filter(val => {
+                                    if (searchTerm === '') {
+                                        return val
+                                    } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return val
+                                    }
+                                },).map((post, i) => {
                                     return (
                                         <div className="mb-4 flex flex-col rounded-lg shadow-lg overflow-hidden" key={i}>
                                             <div className="flex-shrink-0">

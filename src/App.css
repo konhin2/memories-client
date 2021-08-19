@@ -7,9 +7,63 @@ body {
         height: calc(100vh - 64px);
     }
 }
+
 .puntero {
     width: 28px;
     position: relative;
     top: -42.92px;
     left: -14px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #D0F2F2;
+    animation: changeBg 5s linear infinite;
+    /*remove this line (line number 12) if you don't want to change color as it rotates*/
+}
+
+@keyframes changeBg {
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/*remove this part (@keyframe changeBg) if you don't want to change color as it rotates*/
+.loader {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to top, #D0F2F2 40%, #6ADBD9);
+    border-radius: 50%;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    background: #D0F2F2;
+    inset: 20px 20px 0 0;
+    border-radius: 50%;
+}
+
+.loader::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    width: 40px;
+    height: 40px;
+    background: #6ADBD9;
+    border-radius: 50%;
+    right: -8px;
+    box-shadow: 0 0 5px #6ADBD9, 0 0 25px #6ADBD9, 0 0 50px #6ADBD9,
+        0 0 75 px #6ADBD9;
 }

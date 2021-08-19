@@ -6,7 +6,6 @@ export default function Marker(props) {
     const display = (event) => {
         event.preventDefault()
         setMarker(!marker)
-        console.log(props)
     }
     const hideAuto = () => setMarker(false)
     return (
