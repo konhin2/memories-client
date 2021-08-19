@@ -8,7 +8,7 @@ export default function Covid19() {
     const [markers, setMarkers] = useState([])
     useEffect(() => {
         const getData = async () => {
-            const res = await axios.get('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest')
+            const res = await axios.get('wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest')
             setMarkers(
                 res.data
             )
