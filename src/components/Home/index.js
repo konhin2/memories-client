@@ -54,7 +54,7 @@ export default function Home() {
                                                 <img className="h-11 sm:h-11" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/2449px-NASA_logo.svg.png" alt="Tuple" />
                                             </div>
                                             <div className="flex justify-center px-1">
-                                                <img className="h-9 sm:h-10" src="https://mediaweb.nubentos.com/wp-content/uploads/2017/12/08185743/favicon-192x192.png" alt="Workcation" />
+                                                <img className="h-9 sm:h-10" src="https://image.flaticon.com/icons/png/512/888/888856.png" alt="Workcation" />
                                             </div>
                                         </div>
                                     </div>
