@@ -33,7 +33,17 @@ const UserState = (props) => {
         }
         
     }
+    const updateUser = async (dataForm) => {
+        try {
+            const res = await axiosClient.post("/api/users/update", dataForm)
 
+            dispatch({
+                type: "REGISTER_SUCCESS",
+                payload: res.data
+            })    
+
+        } catch (e) {}
+    }
     const verifyingToken = async () => {
 
         const token = localStorage.getItem("token")
@@ -100,6 +110,7 @@ const UserState = (props) => {
             registerUser,
             verifyingToken,
             loginUser,
+            updateUser,
             logOut
         }}>
 

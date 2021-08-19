@@ -13,6 +13,7 @@ import Login from './components/Login'
 import EachMemory from './components/Memories/Memory'
 import NotFound from './components/NotFound'
 import Covid19 from './components/Covid19'
+import Profile from './components/Profile'
 
 // Private Route and Auth
 import PrivateRoute from './components/PrivateRoute'
@@ -40,6 +41,7 @@ function App() {
           <PrivateRoute exact path="/memories" component={Memories} />
           <PrivateRoute exact path="/memories/:id" component={EachMemory} />
           <PrivateRoute exact path="/covid19" component={Covid19} />
+          <PrivateRoute exact path="/profile/:username" component={Profile} />
           {/* AUTH ROUTES */}
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />

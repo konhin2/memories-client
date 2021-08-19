@@ -30,7 +30,7 @@ export default function Like(props) {
         }
         Load()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state,liked])
+    }, [state, liked])
     // FUNCIONES 
     const likeF = async (e) => {
         e.preventDefault()

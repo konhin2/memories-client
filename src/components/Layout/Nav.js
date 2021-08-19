@@ -210,7 +210,7 @@ export default function Nav() {
                                                             <>
                                                                 <div className="origin-top-right z-50 absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
 
-                                                                    <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:text-memory-c1" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</Link>
+                                                                    <Link to={`/profile/${user.username}`}className="block px-4 py-2 text-sm text-gray-700 hover:text-memory-c1" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</Link>
                                                                     <button name='logout' className="block px-4 py-2 text-sm text-gray-700 hover:text-memory-c1" role="menuitem" tabIndex="-1" id="user-menu-item-2" onClick={(e) => {
                                                                         logOut()
                                                                         closeWindows()
