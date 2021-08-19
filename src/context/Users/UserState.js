@@ -56,7 +56,7 @@ const UserState = (props) => {
             })
             
         } catch (error) {
-            
+            console.log(error)
         }
 
     }
