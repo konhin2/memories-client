@@ -3,15 +3,18 @@ import GoogleMapReact from 'google-map-react'
 import axios from 'axios'
 
 import Marker from './Marker'
+import covid19 from './../../covidArr.json'
 
 export default function Covid19() {
-    const [markers, setMarkers] = useState([])
+    const [markers, setMarkers] = useState(covid19)
     useEffect(() => {
         const getData = async () => {
-            const res = await axios.get('wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest')
-            setMarkers(
-                res.data
-            )
+            if (markers.length === 0) {
+                const res = await axios.get('wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest')
+                setMarkers(
+                    res.data
+                )
+            }
         }
         getData()
     })

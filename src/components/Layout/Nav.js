@@ -121,12 +121,12 @@ export default function Nav() {
                                                     currentPage === 'covid19' ?
                                                         (
                                                             <Link to="/covid19" className="border-transparent text-memory-c6 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                                                Covid 19
+                                                                Tracking Covid 19
                                                             </Link>
                                                         ) :
                                                         (
                                                             <Link name='covid19' to="/covid19" className="border-transparent text-white hover:text-memory-c6 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" onClick={(e) => home(e)}>
-                                                                Covid 19
+                                                                Tracking Covid 19
                                                             </Link>
                                                         )
                                                 }
