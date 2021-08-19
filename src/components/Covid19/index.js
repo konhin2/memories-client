@@ -8,7 +8,7 @@ export default function Covid19() {
     const [markers, setMarkers] = useState([])
     useEffect(() => {
         const getData = async () => {
-            const res = await axios.get('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest')
+            const res = await axios.get(process.env.COVID_API_URL)
             setMarkers(
                 res.data
             )
@@ -21,7 +21,7 @@ export default function Covid19() {
                 markers.length > 0 ?
                     (
                         <GoogleMapReact
-                            bootstrapURLKeys={{ key: 'AIzaSyDvyF-KKWMyNqXY0MeHug4QuJTc_3DURnI' }}
+                            bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
                             defaultCenter={{ lat: 0, lng: 0 }}
                             defaultZoom={3}
                             options={{

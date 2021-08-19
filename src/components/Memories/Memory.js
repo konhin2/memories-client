@@ -156,11 +156,11 @@ export default function Memory() {
                                                             {
                                                                 newMemories.title.length < 4 || newMemories.title.length > 30 ?
                                                                     (
-                                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c4 focus:border-memory-c4 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30' />
+                                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c4 focus:border-memory-c4 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300" placeholder="Title" value={newMemories.title} min='4' max='30' />
                                                                     )
                                                                     :
                                                                     (
-                                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c2 focus:border-memory-c2 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-memory-c2" placeholder="Wonderful memory!" value={newMemories.title} min='4' max='30' />
+                                                                        <input onChange={e => handleChange(e)} type="text" name="title" id="title" className="focus:outline-none p-1 focus:ring-memory-c2 focus:border-memory-c2 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-memory-c2" placeholder="Title" value={newMemories.title} min='4' max='30' />
                                                                     )
                                                             }
 
