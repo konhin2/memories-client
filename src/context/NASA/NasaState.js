@@ -4,7 +4,6 @@ import NasaContext from './NasaContext'
 import NasaReducer from './NasaReducer'
 
 const NasaState = (props) => {
-    // eslint-disable-next-line
     const initialState = {
         image:''
     }
@@ -22,7 +21,7 @@ const NasaState = (props) => {
         }
         getInfo()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[initialState])
+    },[globalState])
     
 
     return (
