@@ -21,7 +21,7 @@ const NasaState = (props) => {
         }
         getInfo()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[1000])
+    },[])
     
 
     return (
