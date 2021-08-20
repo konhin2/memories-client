@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import UserContext from './../../context/Users/UserContext'
 import NasaContext from './../../context/NASA/NasaContext'
@@ -13,11 +13,15 @@ export default function Profile() {
         updateUser
     } = userCtx
     const nasaCtx = useContext(NasaContext)
-    const { image } = nasaCtx
+    const { image, getInfo } = nasaCtx
     const [newUser, setNewUser] = useState({
         username: user.username,
         imgOwner: user.imgOwner,
     })
+    useEffect(() => {
+        getInfo()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[image])
     // Funciones
     const uploadImage = async (event) => {
         event.preventDefault()

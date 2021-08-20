@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ReactPlayer from 'react-player'
 import NasaContext from '../../context/NASA/NasaContext'
 import UserContext from './../../context/Users/UserContext'
@@ -8,11 +8,16 @@ export default function Home() {
     const nasaCtx = useContext(NasaContext)
     const {
         image,
+        getInfo
     } = nasaCtx
     const userCtx = useContext(UserContext)
     const {
         authStatus
     } = userCtx
+    useEffect(() => {
+        getInfo()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[image])
     return (
         <div className="overflow-hidden bg-no-repeat bg-cover ajusteHome " style={{ backgroundImage: `url(${image})` }}>
             <div className="relative sm:pb-24">
