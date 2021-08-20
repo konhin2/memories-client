@@ -49,6 +49,8 @@ export default function Nav() {
                 return setCurrentPage('memories')
             case 'covid19':
                 return setCurrentPage('covid19')
+            case 'donations':
+                return setCurrentPage('donations')
             case 'logout':
                 return setCurrentPage('')
             default:
@@ -130,6 +132,19 @@ export default function Nav() {
                                                             </Link>
                                                         )
                                                 }
+                                                {
+                                                    currentPage === 'donations' ?
+                                                        (
+                                                            <Link to="/donations" className="border-transparent text-memory-c6 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                                                Donations
+                                                            </Link>
+                                                        ) :
+                                                        (
+                                                            <Link name='donations' to="/donations" className="border-transparent text-white hover:text-memory-c6 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" onClick={(e) => home(e)}>
+                                                                Donations
+                                                            </Link>
+                                                        )
+                                                }
                                             </>
                                         ) :
                                         (
@@ -173,7 +188,6 @@ export default function Nav() {
                                                             </Link>
                                                         )
                                                 }
-
                                             </>
                                         )
 
@@ -283,6 +297,22 @@ export default function Nav() {
                                                                     closeWindows()
                                                                 }}>
                                                                     Covid 19
+                                                                </Link>
+                                                            )
+                                                    }
+                                                    {
+                                                        currentPage === 'donations' ?
+                                                            (
+                                                                <Link to="/donations" className="text-memory-c6 hover:bg-memory-c3 border-memory-c4 hover:text-memory-c6 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={() => closeWindows()}>
+                                                                    Donations
+                                                                </Link>
+                                                            ) :
+                                                            (
+                                                                <Link name='donations' to="/donations" className="border-transparent text-memory-c6 hover:bg-memory-c3 hover:border-memory-c4 hover:text-memory-c6 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={(e) => {
+                                                                    home(e)
+                                                                    closeWindows()
+                                                                }}>
+                                                                    Donations
                                                                 </Link>
                                                             )
                                                     }
